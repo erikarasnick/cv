@@ -1,0 +1,102 @@
+---
+name: Erika Rasnick Manning
+position: ""
+address: "Division of Biostatistics and Epidemiology, Cincinnati Children's Hospital Medical Center"
+phone: 765-256-0925
+email: "Erika.Rasnick@cchmc.org"
+github: erikarasnick
+# aboutme: "Biostatistican focusing on spatiotemporal data and population health. I'm interested in the development of tools that enhance accessibility and reproducibility of research."
+date: "`r format(Sys.time(), '%B %Y')`"
+headcolor: "000000"
+output: vitae::awesomecv
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(vitae)
+library(glue)
+```
+
+```{r, get_data}
+library(tidyverse)
+
+edu <- read_csv("data/education.csv")
+
+exp <- read_csv("data/experience.csv")
+
+pubs <- read_csv("data/publications.csv")
+
+pres <- read_csv("data/presentations.csv")
+
+skills <- read_csv("data/skills.csv")
+```
+
+# Education
+
+```{r edu}
+detailed_entries(edu, 
+                 when = glue("{start_date}--{end_date}"),
+                 what = degree,
+                 where = location,
+                 with = university)
+```
+
+# Experience
+
+```{r exp}
+exp %>% 
+  detailed_entries(
+    what = role,
+    when = glue("{start_date}--{end_date}"),
+    with = company,
+    where = location)
+```
+
+# Publications
+
+```{r pubs}
+pubs %>% 
+  filter(pub_year != "Under Review") %>% 
+  mutate(pub_year = as.character(pub_year)) %>% 
+  detailed_entries(
+    what = authors,
+    when = pub_year,
+    with = title,
+    where = journal)
+```
+
+# Presentations
+
+```{r pres}
+pres %>% 
+  detailed_entries(
+    what = event,
+    when = date,
+    with = title,
+    where = location)
+```
+
+# Computer Skills
+
+**_Languages_**
+
+R
+
+    + Tidyverse
+    + GIS packages
+    + R Markdown
+    + R Shiny
+    + Package development
+    
+SAS
+
+SQL
+
+**_Tools_**: Git, Docker
+
+```{r}
+# skills %>% 
+#   detailed_entries(with = skill, why = details)
+```
+
+
