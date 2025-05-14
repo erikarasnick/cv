@@ -1,3 +1,4 @@
-role,company,location,start_date,end_date
-Biostatistician/Epidemiologist II,"Cincinnati Children's Hospital Medical Center, Division of Biostatistics and Epidemiology","Cincinnati, OH",Jan-22,present
-Biostatistician/Epidemiologist I ,"Cincinnati Children's Hospital Medical Center, Division of Biostatistics and Epidemiology","Cincinnati, OH",May-19,Jan-22
+role,company,location,start_date,end_date,details
+Senior Biostatistician/Epidemiologist,"Cincinnati Children's Hospital Medical Center, Division of Biostatistics and Epidemiology","Cincinnati, OH",February 2025,present,"Experienced Biostatistician and Epidemiologist with a strong foundation in statistical modeling, spatial analysis, and reproducible research workflows. At Cincinnati Children's Hospital, I lead data-driven investigations into environmental and social determinants of health using R (tidyverse, GIS packages, Quarto, Shiny), custom package development, and computing tools like Git, Docker, and high-performance clusters. My work has contributed to over two dozen peer-reviewed publications, with a focus on advancing health through rigorous, scalable methods for integrating geospatial and clinical data."
+Biostatistician/Epidemiologist II,,,January 2022,February 2025,
+Biostatistician/Epidemiologist I ,,,May 2019,January 2022,

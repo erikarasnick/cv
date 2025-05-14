@@ -1,11 +1,11 @@
 ---
 name: Erika Rasnick Manning
-position: ""
-address: "Division of Biostatistics and Epidemiology, Cincinnati Children's Hospital Medical Center"
+position: "Senior Biostatistician/Epidemiologist"
+address: ""
 phone: 765-256-0925
 email: "Erika.Rasnick@cchmc.org"
 github: erikarasnick
-# aboutme: "Biostatistican focusing on spatiotemporal data and population health. I'm interested in the development of tools that enhance accessibility and reproducibility of research."
+aboutme: "Experienced Biostatistician and Epidemiologist with a strong foundation in statistical modeling, spatial analysis, and reproducible research workflows. At Cincinnati Children's Hospital, I lead data-driven investigations into environmental and social determinants of health using R (tidyverse, GIS packages, Quarto, Shiny), custom R package development, and computational tools like Git, Docker, and high performance computing environments. My work has contributed to over two dozen peer-reviewed publications, with a focus on advancing population health through rigorous, scalable methods for integrating geospatial and clinical data."
 date: "`r format(Sys.time(), '%B %Y')`"
 headcolor: "000000"
 output: vitae::awesomecv
@@ -19,83 +19,64 @@ library(glue)
 
 ```{r, get_data}
 library(tidyverse)
+library(bib2df)
 
 edu <- read_csv("data/education.csv")
 
 exp <- read_csv("data/experience.csv")
 
-pubs <- read_csv("data/publications.csv")
+# pubs <- read_csv("data/publications.csv")
 
 pres <- read_csv("data/presentations.csv")
 
 skills <- read_csv("data/skills.csv")
 ```
 
-# Education
-
-```{r edu}
-detailed_entries(edu, 
-                 when = glue("{start_date}--{end_date}"),
-                 what = degree,
-                 where = location,
-                 with = university)
-```
-
 # Experience
 
 ```{r exp}
-exp %>% 
+exp %>%
   detailed_entries(
     what = role,
     when = glue("{start_date}--{end_date}"),
     with = company,
-    where = location)
+    where = location
+  )
+```
+
+# Education
+
+```{r edu}
+detailed_entries(
+  edu,
+  when = glue("{start_date}--{end_date}"),
+  what = degree,
+  where = location,
+  with = university
+)
 ```
 
 # Publications
 
 ```{r pubs}
-pubs %>% 
-  filter(pub_year != "Under Review") %>% 
-  mutate(pub_year = as.character(pub_year)) %>% 
-  detailed_entries(
-    what = authors,
-    when = pub_year,
-    with = title,
-    where = journal)
+bibliography_entries("data/works.bib")
 ```
 
 # Presentations
 
 ```{r pres}
-pres %>% 
+pres %>%
+  filter(!is.na(title)) %>%
   detailed_entries(
     what = event,
     when = date,
     with = title,
-    where = location)
+    where = location
+  )
 ```
 
-# Computer Skills
-
-**_Languages_**
-
-R
-
-    + Tidyverse
-    + GIS packages
-    + R Markdown
-    + R Shiny
-    + Package development
-    
-SAS
-
-SQL
-
-**_Tools_**: Git, Docker
-
 ```{r}
-# skills %>% 
+# skills %>%
 #   detailed_entries(with = skill, why = details)
 ```
 
